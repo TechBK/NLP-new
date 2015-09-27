@@ -14,6 +14,8 @@ class DocumentClass(Document):
         res._words_and_freq = self._words_and_freq + other._words_and_freq
         return res
 
+
+
     def numberOfDocs(self):
         return self._number_of_docs
 

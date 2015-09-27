@@ -16,13 +16,19 @@ class Pool():
             d = Document()
             print(directory + "/" + file)
             d.read_document(directory + "/" +  file)
+
             x = x + d
         self.__document_classes[classname] = x
-        print(len(dir))
+        #print(len(dir))
         x.setNumberOfDocs(len(dir))
 
     def document_classes(self):
         return self.__document_classes
+
+    def probability(self,directory,dclass = ""):
+        if dclass:
+
+        else:
 
 
 
@@ -37,20 +43,20 @@ if __name__ == "__main__":
 
 
 
+    def test():
+        doc_class = p.document_classes()
 
-    doc_class = p.document_classes()
-    #print(doc_class)
-    #for classname in DClasses:
-    classname = "sex"
-    documentclass = doc_class[classname]
-    numdoc = documentclass.numberOfDocs()
-    print("***************")
-    print(classname)
-    print("Number Of Docs", numdoc)
-    print("***************")
+        #for classname in DClasses:
+        classname = "sex"
+        documentclass = doc_class[classname]
+        numdoc = documentclass.numberOfDocs()
+        print("***************")
+        print(classname)
+        print("Number Of Docs", numdoc)
+        print("***************")
+        bag = documentclass.wordAndFreq()
+        print(bag)
+        #for key,value in bag.items():
+           #print(key,' : ',value)
 
-
-    bag = documentclass.wordAndFreq()
-    print(bag)
-    #for key,value in bag.items():
-       #print(key,' : ',value)
+    test()

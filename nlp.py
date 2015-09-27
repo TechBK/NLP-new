@@ -16,5 +16,5 @@ base = "test/"
 for classname in DClasses:
     dir = os.listdir(base + classname)
     for file in dir:
-        res = p.Probability(base + classname + "/" + file)
+        res = p.probability(base + classname + "/" + file)
         print(classname + ": " + file + ": " + str(res))

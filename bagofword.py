@@ -30,3 +30,13 @@ class BagOfWords(object):
     def bagofwords(self):
         """ Returning the dictionary, containing the words (keys) with their frequency (values)"""
         return self.__bag_of_words
+
+    def __str__(self):
+
+        return "Number: "+str(self.__number_of_words)+"\nBag:"+str(self.__bag_of_words)
+        #print("Number:", self.__number_of_words)
+        #print("Bag:", self.__bag_of_words)
+
+if __name__ == "__main__":
+    bag = BagOfWords()
+    print(bag)
