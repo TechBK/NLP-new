@@ -35,7 +35,7 @@ class Pool():
     def probability(self,document,dclass = ""):
         if dclass:
             d = Document()
-            d.read_document(doc)
+            d.read_document(document)
 
             doc_class = self.__document_classes[dclass]
 
@@ -44,20 +44,16 @@ class Pool():
             LogPc = log(Nc / self.__number_of_doc)
 
             sumLogPTkC = 0
+            for word in d._bag_of_words.keys():
+                if word in doc_class._bag_of_words:
+                    TctK = doc_class._bag_of_words[word]
+                else:
+                    TctK = 0
+                P_TkC= (TctK+1)/(doc_class._number_of_words + doc_class.len())
 
-            for word,freq in d.wordAndFreq().items():
-
-
-
-
-                doc_class.wordAndFreq()[word] + 1
-
-                sumLogPTkC += 1
-
-            Tctk = 1
-
-            P_TkC = 1
-
+                sumLogPTkC += log(P_TkC)
+            LogPc += sumLogPTkC
+            return sumLogPTkC
         else:
             prob_list = []
             for dclass in self.__document_classes:

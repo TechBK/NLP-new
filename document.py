@@ -7,17 +7,17 @@ __author__ = 'techbk'
 class Document(object):
 
     def __init__(self):
-        self.__number_of_words = 0  # tong so tu trong 1 bag
-        self.__bag_of_words = {}
+        self._number_of_words = 0  # tong so tu trong 1 bag
+        self._bag_of_words = {}
 
-    def __add__(self, other):
-        """ Overloading of the "+" operator to join two BagOfWords """
-        erg = Document()
-        erg.__bag_of_words = {k: self.__bag_of_words.get(k, 0) + other.__bag_of_words.get(k, 0)
-                              for k in self.__bag_of_words.keys() | other.__bag_of_words.keys()}
-        erg.__number_of_words = self.__number_of_words + self.__number_of_words
-
-        return erg
+    #def __add__(self, other):
+        #""" Overloading of the "+" operator to join two BagOfWords """
+        #erg = Document()
+        #erg._bag_of_words = {k: self._bag_of_words.get(k, 0) + other._bag_of_words.get(k, 0)
+        #                      for k in self._bag_of_words.keys() | other._bag_of_words.keys()}
+        #erg.__number_of_words = self.__number_of_words + self.__number_of_words
+        #
+        #return erg
 
     def read_document(self, filename):
 
@@ -38,25 +38,24 @@ class Document(object):
 
     def add_word(self, word):
         """ A word is added in the dictionary __bag_of_words"""
-        self.__number_of_words += 1
-        if word in self.__bag_of_words:
-            self.__bag_of_words[word] += 1
+        self._number_of_words += 1
+        if word in self._bag_of_words:
+            self._bag_of_words[word] += 1
         else:
-            self.__bag_of_words[word] = 1
+            self._bag_of_words[word] = 1
 
-    def numberOfWordInBag(self):
-        """ Returning Number Of Word In Bag"""
-        return self.__number_of_words
+    #def numberOfWordInBag(self):
+        #""" Returning Number Of Word In Bag"""
+        #return self._number_of_words
 
     def len(self):
         """ Returning len of bag of word. It mean number of defirent words"""
 
-        return len(self.__bag_of_words)
+        return len(self._bag_of_words)
 
     def __str__(self):
 
-        return "Number: " + str(self.__number_of_words) + "\nBag:" + str(self.__bag_of_words)
-
+        return "Number: " + str(self._number_of_words) + "\nBag:" + str(self._bag_of_words)
 
 if __name__ == "__main__":
     d = Document()
@@ -68,4 +67,4 @@ if __name__ == "__main__":
     print(f)
     print(type(f))
 
-    print(d + f)
+    #print(d + f)

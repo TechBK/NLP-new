@@ -11,9 +11,9 @@ class DocumentClass(Document):
     def __add__(self, other):
         doc_class = DocumentClass()
 
-        doc_class.__bag_of_words = {k: self.__bag_of_words.get(k, 0) + other.__bag_of_words.get(k, 0)
-                                    for k in self.__bag_of_words.keys() | other.__bag_of_words.keys()}
-        doc_class.__number_of_words = self.__number_of_words + self.__number_of_words
+        doc_class._bag_of_words = {k: self._bag_of_words.get(k, 0) + other._bag_of_words.get(k, 0)
+                                    for k in self._bag_of_words.keys() | other._bag_of_words.keys()}
+        doc_class.__number_of_words = self._number_of_words + self._number_of_words
         # doc_class.__number_of_docs = self.__number_of_docs + self.__number_of_docs
 
         return doc_class
