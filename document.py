@@ -1,36 +1,71 @@
-__author__ = 'techbk'
 import re
-from bagofword import BagOfWords
+
+
+__author__ = 'techbk'
+
 
 class Document(object):
 
     def __init__(self):
-        self._words_and_freq = BagOfWords()
-        #self._vocabulary = BagOfWords()
+        self.__number_of_words = 0  # tong so tu trong 1 bag
+        self.__bag_of_words = {}
 
-    def read_document(self,filename):
+    def __add__(self, other):
+        """ Overloading of the "+" operator to join two BagOfWords """
+        erg = Document()
+        erg.__bag_of_words = {k: self.__bag_of_words.get(k, 0) + other.__bag_of_words.get(k, 0)
+                              for k in self.__bag_of_words.keys() | other.__bag_of_words.keys()}
+        erg.__number_of_words = self.__number_of_words + self.__number_of_words
+
+        return erg
+
+    def read_document(self, filename):
 
         try:
-            text = open(filename,"r", encoding='utf-8').read()
+            text = open(filename, "r", encoding='utf-8').read()
         except UnicodeDecodeError:
-            text = open(filename,"r", encoding='latin-1').read()
+            text = open(filename, "r", encoding='latin-1').read()
         text = text.lower()
-        words = re.split("[^\wäöüÄÖÜß]*",text) # what re module?
+        words = re.split("[^\wäöüÄÖÜß]*", text)  # what re module?
 
-        #self._number_of_words = 0
-        #take word into bag
+        # self._number_of_words = 0
+        # take word into bag
 
         for word in words:
             if word != '':
-                self._words_and_freq.add_word(word)
+                # self._words_and_freq.add_word(word)
+                self.add_word(word)
+
+    def add_word(self, word):
+        """ A word is added in the dictionary __bag_of_words"""
+        self.__number_of_words += 1
+        if word in self.__bag_of_words:
+            self.__bag_of_words[word] += 1
+        else:
+            self.__bag_of_words[word] = 1
+
+    def numberOfWordInBag(self):
+        """ Returning Number Of Word In Bag"""
+        return self.__number_of_words
+
+    def len(self):
+        """ Returning len of bag of word. It mean number of defirent words"""
+
+        return len(self.__bag_of_words)
 
     def __str__(self):
-        return str(self._words_and_freq)
 
-    def wordAndFreq(self):
-        return  self._words_and_freq.bagofwords()
+        return "Number: " + str(self.__number_of_words) + "\nBag:" + str(self.__bag_of_words)
+
 
 if __name__ == "__main__":
     d = Document()
     d.read_document("learn/clinton/clinton5.txt")
     print(d)
+    print(type(d))
+    f = Document()
+    f.read_document("learn/clinton/clinton4.txt")
+    print(f)
+    print(type(f))
+
+    print(d + f)

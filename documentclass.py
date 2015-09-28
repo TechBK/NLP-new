@@ -2,24 +2,39 @@ __author__ = 'techbk'
 
 from document import Document
 
-class DocumentClass(Document):
 
-    def _init__(self):
+class DocumentClass(Document):
+    def __init__(self):
         Document.__init__(self)
-        self._number_of_docs = 0
+        self.__number_of_docs = 0
 
     def __add__(self, other):
+        doc_class = DocumentClass()
 
-        res = DocumentClass()
-        res._words_and_freq = self._words_and_freq + other._words_and_freq
-        return res
+        doc_class.__bag_of_words = {k: self.__bag_of_words.get(k, 0) + other.__bag_of_words.get(k, 0)
+                                    for k in self.__bag_of_words.keys() | other.__bag_of_words.keys()}
+        doc_class.__number_of_words = self.__number_of_words + self.__number_of_words
+        # doc_class.__number_of_docs = self.__number_of_docs + self.__number_of_docs
 
-
+        return doc_class
 
     def numberOfDocs(self):
-        return self._number_of_docs
+        return self.__number_of_docs
 
     def setNumberOfDocs(self, number):
-        self._number_of_docs = number
+        self.__number_of_docs = number
 
 
+if __name__ == "__main__":
+    d = DocumentClass()
+    d.read_document("learn/clinton/clinton5.txt")
+    print(d)
+    print(type(d))
+    f = DocumentClass()
+    f.read_document("learn/clinton/clinton5.txt")
+    print(f)
+    print(type(f))
+    x = d + f
+    print(type(x))
+
+    print(x)
