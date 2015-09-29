@@ -24,7 +24,7 @@ class Pool():
         numberfile = len(dir)
         x.setNumberOfDocs(numberfile)
 
-        print(x)
+        #print(x)
         self.__number_of_doc += numberfile
 
     def document_classes(self):
@@ -53,7 +53,7 @@ class Pool():
 
                 sumLogPTkC += log(P_TkC)
             LogPc += sumLogPTkC
-            return sumLogPTkC
+            return LogPc
         else:
             prob_list = []
             for dclass in self.__document_classes:
